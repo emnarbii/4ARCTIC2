@@ -18,14 +18,12 @@
           <a
             class="nav-link active"
             aria-current="page"
-            href="https://esprit.tn/"
+           routerLink="/home"
             >{{ link1 }}</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link"  [style.color]="linkColor" >{{
-            link2
-          }}</a>
+          <a class="nav-link" [style.color]="linkColor" routerLink="/residences">{{ link2 }}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Contact</a>
@@ -35,5 +33,5 @@
   </div>
 </nav>
 
-<input type="color" [(ngModel)]= "linkColor">
+<!-- <input type="color" [(ngModel)]= "linkColor"> -->
 <!-- <button (click)="changeColor()">change color</button> -->

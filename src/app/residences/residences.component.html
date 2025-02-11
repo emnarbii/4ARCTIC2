@@ -1,14 +1,33 @@
 <h1>Listes des résidences</h1>
+<input type="text" placeholder="taper l'adresse"  [(ngModel)]="adress">
+{{adress}}
 
-<div class="row" *ngFor="let res of listResidences">
-<div class="card" style="width: 18rem;">
+
+<div style="display: flex; flex-wrap: wrap;">
+<div class="row" *ngFor="let res of filterByAdress()">
+<div class="card" style="width: 18rem;margin-right: 30px;">
     <img [src]="res.image" class="card-img-top" alt="...">
     <div class="card-body">
       <h3 class="card-title">{{res.name}}</h3>
-      <h3 *ngIf="res.status==='Disponible=> [style.color]='red'" class="card-text">{{res.status}}</h3>
+      <!-- <h3 class="card-title">{{res.address}}</h3> -->
+      <h3 *ngIf="res.status==='Disponible'"  style="color:green" class="card-text">{{res.status}}</h3>
+      <h3 *ngIf="res.status==='Vendu'"  style="color:red" class="card-text">{{res.status}}</h3>
+      <h3 *ngIf="res.status==='En Construction'"  style="color:orange" class="card-text">{{res.status}}</h3>
+      
       <a href="#" class="btn btn-primary" (click)="showLocation(res.address)">Show location</a>
-      <div><h2>{{address}}</h2></div>
+      <a href="#" class="btn btn-primary" (click)="addToFavorite2(res)">Like</a>
+      <!-- <a href="#" class="btn btn-primary" routerLink="/details/{{res.id}}">Details</a> -->
+      <a href="#" class="btn btn-primary" [routerLink]="['/details',res.id]">Details</a>
 
+
+      <div><h2>{{address}}</h2></div>
     </div>
   </div>
+</div>
+</div>
+
+<div class="row" *ngFor="let res of listFavorite">
+  <ul>
+    <li>{{res.name}}</li>
+  </ul>
 </div>

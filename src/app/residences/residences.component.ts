@@ -7,7 +7,10 @@ import { Residence } from '../core/models/Residence';
   styleUrls: ['./residences.component.css'],
 })
 export class ResidencesComponent {
-  address:string="";
+  address: string = '';
+  adress: string = '';
+  listFavorite: Residence[] = [];
+  listFiltred: Residence[] = [];
   listResidences: Residence[] = [
     {
       id: 1,
@@ -39,11 +42,29 @@ export class ResidencesComponent {
     },
   ];
 
-  showLocation(address:string) {
+  showLocation(address: string) {
     if (address === 'inconnu') {
       return alert("l'adresse est inconnue");
     } else {
-     return alert("l'adresse est  "+address);
+      return alert("l'adresse est  " + address);
     }
+  }
+// première méthode
+  addToFavorite1(res: Residence) {
+    if (this.listFavorite.indexOf(res)==-1) {
+      this.listFavorite.push(res);
+    }
+  }
+
+  // deuxième méthode
+  addToFavorite2(res: Residence) {
+    // if (this.listFavorite.includes(res)) {
+    //   this.listFavorite.push(res);
+    // }
+  }
+
+  filterByAdress(){
+    // this.listFiltred=this.listResidences;
+    return this.listFiltred=this.listResidences.filter(res=>(res.address.toLowerCase().includes(this.adress.toLowerCase())))
   }
 }
