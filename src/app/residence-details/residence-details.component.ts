@@ -9,46 +9,49 @@ import { Residence } from '../core/models/Residence';
 })
 export class ResidenceDetailsComponent {
   id!: number;
-  res:Residence | undefined;
+  res: Residence | undefined;
   constructor(private act: ActivatedRoute) {}
 
   listResidences: Residence[] = [
-      {
-        id: 1,
-        name: 'El fel',
-        address: 'Borj Cedria',
-        image: '../../assets/images/R1.jpg',
-        status: 'Disponible',
-      },
-      {
-        id: 2,
-        name: 'El yasmine',
-        address: 'Ezzahra',
-        image: '../../assets/images/R2.jpg',
-        status: 'Disponible',
-      },
-      {
-        id: 3,
-        name: 'El Arij',
-        address: 'Rades',
-        image: '../../assets/images/R1.jpg',
-        status: 'Vendu',
-      },
-      {
-        id: 4,
-        name: 'El Anber',
-        address: 'inconnu',
-        image: '../../assets/images/R2.jpg',
-        status: 'En Construction',
-      },
-    ];
-  
+    {
+      id: 1,
+      name: 'El fel',
+      address: 'Borj Cedria',
+      image: '../../assets/images/R1.jpg',
+      status: 'Disponible',
+    },
+    {
+      id: 2,
+      name: 'El yasmine',
+      address: 'Ezzahra',
+      image: '../../assets/images/R2.jpg',
+      status: 'Disponible',
+    },
+    {
+      id: 3,
+      name: 'El Arij',
+      address: 'Rades',
+      image: '../../assets/images/R1.jpg',
+      status: 'Vendu',
+    },
+    {
+      id: 4,
+      name: 'El Anber',
+      address: 'inconnu',
+      image: '../../assets/images/R2.jpg',
+      status: 'En Construction',
+    },
+  ];
+
   ngOnInit() {
     // this.id = this.act.snapshot.params['id'];
-    this.act.paramMap.subscribe(
-      param=>this.id= Number(param.get('id')))
-this.res=this.listResidences.filter(res=>res.id==this.id)[0]
+    this.act.paramMap.subscribe((param) => {
+      this.id = Number(param.get('id'));
+      this.load();
+    });
   }
 
-
+  load(): void {
+    this.res = this.listResidences.find((res) => res.id === this.id);
+  }
 }

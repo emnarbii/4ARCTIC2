@@ -9,6 +9,7 @@ import { Residence } from '../core/models/Residence';
 export class ResidencesComponent {
   address: string = '';
   adress: string = '';
+  date:Date= new Date();
   listFavorite: Residence[] = [];
   listFiltred: Residence[] = [];
   listResidences: Residence[] = [
