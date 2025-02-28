@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Residence } from '../core/models/Residence';
+import { ResidenceService } from '../core/services/residence.service';
 
 @Component({
   selector: 'app-residences',
@@ -7,42 +8,15 @@ import { Residence } from '../core/models/Residence';
   styleUrls: ['./residences.component.css'],
 })
 export class ResidencesComponent {
+
+
+constructor(private rs:ResidenceService){}
   address: string = '';
   adress: string = '';
   date:Date= new Date();
   listFavorite: Residence[] = [];
   listFiltred: Residence[] = [];
-  listResidences: Residence[] = [
-    {
-      id: 1,
-      name: 'El fel',
-      address: 'Borj Cedria',
-      image: '../../assets/images/R1.jpg',
-      status: 'Disponible',
-    },
-    {
-      id: 2,
-      name: 'El yasmine',
-      address: 'Ezzahra',
-      image: '../../assets/images/R2.jpg',
-      status: 'Disponible',
-    },
-    {
-      id: 3,
-      name: 'El Arij',
-      address: 'Rades',
-      image: '../../assets/images/R1.jpg',
-      status: 'Vendu',
-    },
-    {
-      id: 4,
-      name: 'El Anber',
-      address: 'inconnu',
-      image: '../../assets/images/R2.jpg',
-      status: 'En Construction',
-    },
-  ];
-
+  listResidence: Residence[] = [];
   showLocation(address: string) {
     if (address === 'inconnu') {
       return alert("l'adresse est inconnue");
@@ -66,6 +40,12 @@ export class ResidencesComponent {
 
   filterByAdress(){
     // this.listFiltred=this.listResidences;
-    return this.listFiltred=this.listResidences.filter(res=>(res.address.toLowerCase().includes(this.adress.toLowerCase())))
+    this.rs.getResidenceList().subscribe(result=>this.listResidence=result)
+    return this.listResidence.filter(res=>(res.address.toLowerCase().includes(this.adress.toLowerCase())))
+  }
+
+
+  delete(id:number){
+    this.rs.deleteResidence(id).subscribe(()=>alert("residence deleted!!!"))
   }
 }

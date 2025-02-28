@@ -11,6 +11,8 @@ import { ResidenceDetailsComponent } from './residence-details/residence-details
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ResidenceFormComponent } from './residence-form/residence-form.component';
+import { AddApartmentComponent } from './add-apartment/add-apartment.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import { ResidenceFormComponent } from './residence-form/residence-form.componen
     ResidenceDetailsComponent,
     HomeComponent,
     NotFoundComponent,
-    ResidenceFormComponent
+    ResidenceFormComponent,
+    AddApartmentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
